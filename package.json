@@ -1,0 +1,30 @@
+{
+  "name": "react-redact",
+  "version": "0.1.0",
+  "description": "A simple global state container for React apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harryhope/redact.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "updeep",
+    "state"
+  ],
+  "author": "Harry Hope",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harryhope/redact/issues"
+  },
+  "homepage": "https://github.com/harryhope/redact#readme",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "redux-updeep": "^0.1.1",
+    "updeep": "^1.2.0"
+  }
+}
