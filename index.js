@@ -18,7 +18,7 @@ export const useRedactState = (selector, defaultState, namespace = 'REDACT') => 
     dispatch({
       payload: isArray(newValue) ? constant(newValue) : newValue,
       path: selector,
-      type: `${namespace}/${}`
+      type: `${namespace}/${selector}`
     })
 
   return [value, updateValue]
