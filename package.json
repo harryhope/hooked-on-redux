@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "npx webpack --mode=development"
+    "build:example": "npx webpack --mode=development"
   },
   "repository": {
     "type": "git",

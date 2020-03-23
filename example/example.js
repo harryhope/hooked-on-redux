@@ -10,11 +10,11 @@ const store = createStore(reducer, {})
 const App = props => {
   const [value, updateValue] = useRedactState('app.counterValue', 0)
   return (
-    <div>
+    <main>
       <div>{value}</div>
       <div><button onClick={() => updateValue(value + 1)}>+ 1</button></div>
       <div><button onClick={() => updateValue(value -1)}>- 1</button></div>
-    </div>
+    </main>
   )
 }
 
