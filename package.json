@@ -4,7 +4,8 @@
   "description": "A simple global state container for React apps",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "build": "npx webpack --mode=development"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,22 @@
     "lodash": "^4.17.15",
     "redux-updeep": "^0.1.1",
     "updeep": "^1.2.0"
+  },
+  "peerDependencies": {
+    "react-redux": "^7.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.1",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.1.0",
+    "jest": "^25.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "redux": "^4.0.5",
+    "react-redux": "^7.2.0",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
   }
 }

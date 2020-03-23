@@ -1,7 +1,7 @@
 import { constant } from 'updeep'
 import get from 'lodash/get'
 import isArray from 'lodash/isArray'
-import {createReducer as createUpdeepReducer} from 'redux-updeep'
+import * as createUpdeepReducer from 'redux-updeep'
 import {useSelector, useDispatch} from 'react-redux'
 
 export const createReducer = (initialState = {}, namespace = 'REDACT', handlers = {}) =>
@@ -9,7 +9,7 @@ export const createReducer = (initialState = {}, namespace = 'REDACT', handlers 
 
 export const useRedactState = (selector, defaultState, namespace = 'REDACT') => {
   const value = useSelector(state =>
-    _.get(state, selector, defaultState)
+    get(state, selector, defaultState)
   )
 
   const dispatch = useDispatch()
