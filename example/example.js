@@ -11,9 +11,9 @@ const App = props => {
   const [value, updateValue] = useRedactState('app.counterValue', 0)
   return (
     <main>
+      <div><button onClick={() => updateValue(value -1)}>-</button></div>
       <div>{value}</div>
-      <div><button onClick={() => updateValue(value + 1)}>+ 1</button></div>
-      <div><button onClick={() => updateValue(value -1)}>- 1</button></div>
+      <div><button onClick={() => updateValue(value + 1)}>+</button></div>
     </main>
   )
 }
