@@ -4,10 +4,10 @@ import isArray from 'lodash/isArray'
 import createReducer from 'redux-updeep'
 import {useSelector, useDispatch} from 'react-redux'
 
-export const createRedactReducer = (initialState = {}, namespace = 'REDACT', handlers = {}) =>
+export const createHookedOnReducer = (initialState = {}, namespace = 'HOOKED_ON_REDUX', handlers = {}) =>
   createReducer(namespace, initialState, handlers)
 
-export const useRedactState = (selector, defaultState, namespace = 'REDACT') => {
+export const useHookedOnState = (selector, defaultState, namespace = 'HOOKED_ON_REDUX') => {
   const value = useSelector(state =>
     get(state, selector, defaultState)
   )

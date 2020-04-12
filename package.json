@@ -1,5 +1,5 @@
 {
-  "name": "react-redact",
+  "name": "hooked-on-redux",
   "version": "0.1.0",
   "description": "A simple global state container for React apps",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/harryhope/redact.git"
+    "url": "git+https://github.com/harryhope/hooked-on-redux.git"
   },
   "keywords": [
     "react",
@@ -20,9 +20,9 @@
   "author": "Harry Hope",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/harryhope/redact/issues"
+    "url": "https://github.com/harryhope/hooked-on-redux/issues"
   },
-  "homepage": "https://github.com/harryhope/redact#readme",
+  "homepage": "https://github.com/harryhope/hooked-on-redux#readme",
   "dependencies": {
     "lodash": "^4.17.15",
     "redux-updeep": "^0.1.1",
@@ -35,6 +35,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.1",
+    "@testing-library/react": "^10.0.2",
     "babel-jest": "^25.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
