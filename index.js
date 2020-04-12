@@ -1,11 +1,11 @@
 import { constant } from 'updeep'
 import get from 'lodash/get'
 import isArray from 'lodash/isArray'
-import * as createUpdeepReducer from 'redux-updeep'
+import createReducer from 'redux-updeep'
 import {useSelector, useDispatch} from 'react-redux'
 
-export const createReducer = (initialState = {}, namespace = 'REDACT', handlers = {}) =>
-  createUpdeepReducer(namespace, initialState, handlers)
+export const createRedactReducer = (initialState = {}, namespace = 'REDACT', handlers = {}) =>
+  createReducer(namespace, initialState, handlers)
 
 export const useRedactState = (selector, defaultState, namespace = 'REDACT') => {
   const value = useSelector(state =>
