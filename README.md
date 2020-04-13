@@ -11,7 +11,7 @@ const Example = props => {
   const [count, setCount] = useHookedOnState('app.components.counterValue', 0)
   return (
     <main>
-      <div>You clicked {count} times.</div>
+      <p>You clicked {count} times.</p>
       <button onClick={() => setCount(value + 1)}>Click Me</button>
     </main>
   )
