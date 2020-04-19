@@ -1,8 +1,8 @@
-import { constant } from 'updeep'
 import get from 'lodash/get'
 import isArray from 'lodash/isArray'
 import createReducer from 'redux-updeep'
-import {useSelector, useDispatch} from 'react-redux'
+import { constant } from 'updeep'
+import { useSelector, useDispatch } from 'react-redux'
 
 export const createHookedOnReducer = (initialState = {}, namespace = 'HOOKED_ON_REDUX', handlers = {}) =>
   createReducer(namespace, initialState, handlers)
