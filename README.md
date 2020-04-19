@@ -91,7 +91,11 @@ You can update any slice of the global state this way by providing a path as the
 
 ## API
 
-#### `createHookedOnReducer(initialState, namespace, handlers)`
+### createHookedOnReducer
+```js
+createHookedOnReducer(initialState, namespace, handlers)
+```
+
 Creates a redux reducer meant to be used with [`createStore`](https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer).
 
 **Arguments**
@@ -114,7 +118,10 @@ export default createHookedOnReducer(initialState, 'MY_NAMESPACE', {
 
 ---
 
-#### `useHookedOnState(selector, defaultState, namespace)`
+### useHookedOnState
+```js
+useHookedOnState(selector, defaultState, namespace)
+```
 
 **Arguments**
 
