@@ -89,6 +89,40 @@ Now, whenever you use the `setCount` function you defined, it will immutably upd
 
 You can update any slice of the global state this way by providing a path as the first parameter of `useHookedOnState`. The path string parameter works identically to [lodash's `_.set`](https://lodash.com/docs/4.17.15#set).
 
+## API
 
+#### `createHookedOnReducer(initialState, namespace, handlers)`
+Creates a redux reducer meant to be used with [`createStore`](https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer).
 
+**Arguments**
+
+`initialState`: _(any)_ The initial state of the slice of the redux store controlled by the hooked-on-reducer. Use this parameter to define pre-existing state. **Default value:** `{}`
+
+`namespace`: _(string)_ Hooked on Redux generates redux actions behind the scenes without you having to do anything. To allow interoperability with other actions, Hooked on Redux prefixes its own actions with a string. Anything with this string will be funneled through the hooked-on-reducer this function creates. **Default Value:** `'HOOKED_ON_REDUX'`
+
+`handlers`: _(object)_ If you need to add your own reducers to handle complicated state transforms or leverage existing reducers in your application, you can pass them through to `handlers`. For more information, see [Complex Actions](https://github.com/algolia/redux-updeep#complex-actions) in `redux-updeep` (which this library is built upon).
+
+```js
+export default createHookedOnReducer(initialState, 'MY_NAMESPACE', {
+  'MY_NAMESPACE/COMPLEX_ACTION': (state, action) => {
+    return complexTransformation(state, action.payload)
+  }
+})
+```
+
+**Returns:** _(function)_ This function returns a function that can be used in redux's `createStore`.
+
+---
+
+#### `useHookedOnState(selector, defaultState, namespace)`
+
+**Arguments**
+
+`selector`: _(string)_ Takes a path string similar to what you would use in [lodash's `_.set`](https://lodash.com/docs/4.17.15#set). This path specifies the "slice" of the store that you will be modifying.
+
+`defaultState`: _(any)_ This is the default value that will be used if the "slice" of the store specified by `selector` is empty. It works very similarly to [`useState`](https://reactjs.org/docs/hooks-state.html)'s default state.
+
+`namespace`: _(string)_ If you are using a custom namespace for `createHookedOnReducer` then you must specify that namespace as the third parameter. If you are not using a default namespace then you can ignore this. **Default Value:** `'HOOKED_ON_REDUX'`
+
+**Returns:** _(array)_ `[value, updateValue]` This function returns a "tuple" much like [`useState`](https://reactjs.org/docs/hooks-state.html). The first array element `value` is the value at the slice of state. The second element of the array `updateValue` is a function that accepts a single parameter that updates the global state at the slice of state specified by `selector`.
 
