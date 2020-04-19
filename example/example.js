@@ -11,7 +11,7 @@ const App = props => {
   const [value, updateValue] = useHookedOnState('app.counterValue', 0)
   return (
     <main>
-      <div><button onClick={() => updateValue(value -1)}>-</button></div>
+      <div><button onClick={() => updateValue(value - 1)}>-</button></div>
       <div>{value}</div>
       <div><button onClick={() => updateValue(value + 1)}>+</button></div>
     </main>
