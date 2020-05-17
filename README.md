@@ -1,4 +1,7 @@
 # Hooked On Redux
+
+![Tests](https://github.com/harryhope/hooked-on-redux/workflows/Tests/badge.svg?branch=master)
+
 Hooked on Redux is a [React hook](https://reactjs.org/docs/hooks-intro.html) that lets you wield the power of [Redux](https://redux.js.org) with an interface that's as simple as the [`useState`](https://reactjs.org/docs/hooks-state.html) hook.
 
 Redux is a great way to manage React state and its core principle: [a single, immutable application state](https://redux.js.org/introduction/three-principles), allows for great features like [hot reloading and time travel debugging](https://www.youtube.com/watch?v=xsSnOQynTHs). Unfortunately, Redux is also intimidating to learn for beginners and requires a lot of [boilerplate](https://redux.js.org/recipes/reducing-boilerplate) that can slow down application development and add overhead to your codebase.
