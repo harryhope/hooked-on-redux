@@ -1,4 +1,6 @@
-# Hooked On Redux
+![Hooked On Redux](https://user-images.githubusercontent.com/2415156/82386143-c214a880-9a01-11ea-8b92-d39198cd4e89.jpg)
+
+---
 
 ![Tests](https://github.com/harryhope/hooked-on-redux/workflows/Tests/badge.svg?branch=master)
 
