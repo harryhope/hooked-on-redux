@@ -1,4 +1,4 @@
-![Hooked On Redux](https://user-images.githubusercontent.com/2415156/82386143-c214a880-9a01-11ea-8b92-d39198cd4e89.jpg)
+![hooked-2x](https://user-images.githubusercontent.com/2415156/82620918-b531b980-9ba7-11ea-8d48-369160ff18b5.jpg)
 
 ---
 
