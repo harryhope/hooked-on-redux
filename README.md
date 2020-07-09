@@ -26,15 +26,15 @@ const Example = props => {
 ## Getting Started
 
 ### Installation
-Hooked on Redux requires react-redux as a peer dependency. You'll also need `react`, `react-dom`, and `redux` if you don't have them installed already. This guide also assumes you are using npm and a module bundler like [webpack](https://webpack.js.org). To get started:
+Hooked on Redux requires `react-redux` as a peer dependency. You'll also need `react`, `react-dom`, and `redux` if you don't have them installed already. This guide also assumes you are using npm and a module bundler like [webpack](https://webpack.js.org). To get started:
 ```
 npm i hooked-on-redux react-redux redux react-dom react
 ```
 
 ### Importing Dependencies
-Hooked on Redux works with redux and react, so we need to install all of the typical dependencies as well as `hooked-on-redux`.
+Hooked on Redux works with Redux and React, so we need to install all of the typical dependencies as well as `hooked-on-redux`.
 
-Hooked on Redux can also work with your existing react/redux app, so if you already have react and redux installed you can skip importing from `react`, `react-dom`, `redux` and `react-redux`.
+Hooked on Redux can also work with your existing React/Redux app, so if you already have React and Redux installed you can skip importing from `react`, `react-dom`, `redux` and `react-redux`.
 
 ```jsx
 import React from 'react'
@@ -45,7 +45,7 @@ import {createHookedOnReducer, useHookedOnState} from 'hooked-on-redux'
 ```
 
 ### The Store
-Hooked on Redux uses a redux store (either a new or existing one) along with a reducer creator called `createHookedOnReducer`. This reducer creator will automatically manage state transformations so you won't need to think about reducers, actions or action creators.
+Hooked on Redux uses a Redux store (either a new or existing one) along with a reducer creator called `createHookedOnReducer`. This reducer creator will automatically manage state transformations so you won't need to think about reducers, actions or action creators.
 
 ```jsx
 const reducer = createHookedOnReducer()
@@ -53,7 +53,7 @@ const store = createStore(reducer, {})
 ```
 
 ### Provider 
-Hooked on Redux leverages the `<Provider />` component from `react-redux`. If you've ever used redux with react before you are probably already familiar with this step. In fact, most of this code should look identical to the [react-redux](https://react-redux.js.org/introduction/quick-start#provider) quick start guide.
+Hooked on Redux leverages the `<Provider />` component from `react-redux`. If you've ever used Redux with React before you are probably already familiar with this step. In fact, most of this code should look identical to the [react-redux](https://react-redux.js.org/introduction/quick-start#provider) quick start guide.
 
 ```jsx
 ReactDOM.render(
@@ -67,7 +67,7 @@ ReactDOM.render(
 ### The Hook
 You are now ready to start writing components using `useHookedOnState`.
 
-`useHookedOnState` is a [react hook](https://reactjs.org/docs/hooks-intro.html) that looks and functions similar to the [`useState`](https://reactjs.org/docs/hooks-state.html) hook. The only difference is it allows you to update a redux store instead of local component state by specifying a slice of the global state to modify along with a default value in case nothing is there.
+`useHookedOnState` is a [react hook](https://reactjs.org/docs/hooks-intro.html) that looks and functions similar to the [`useState`](https://reactjs.org/docs/hooks-state.html) hook. The only difference is it allows you to update a Redux store instead of local component state by specifying a slice of the global state to modify along with a default value in case nothing is there.
 
 ```jsx
 const Counter = props => {
@@ -81,7 +81,7 @@ const Counter = props => {
 }
 ```
 
-Now, whenever you use the `setCount` function you defined, it will immutably update the redux store to look like:
+Now, whenever you use the `setCount` function you defined, it will immutably update the Redux store to look like:
 ```js
 {
   app: {
@@ -101,13 +101,13 @@ You can update any slice of the global state this way by providing a path as the
 createHookedOnReducer(initialState, namespace, handlers)
 ```
 
-Creates a redux reducer meant to be used with [`createStore`](https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer).
+Creates a Redux reducer meant to be used with [`createStore`](https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer).
 
 **Arguments**
 
-`initialState`: _(any)_ The initial state of the slice of the redux store controlled by the hooked-on-reducer. Use this parameter to define pre-existing state. **Default value:** `{}`
+`initialState`: _(any)_ The initial state of the slice of the Redux store controlled by the hooked-on-reducer. Use this parameter to define pre-existing state. **Default value:** `{}`
 
-`namespace`: _(string)_ Hooked on Redux generates redux actions behind the scenes without you having to do anything. To allow interoperability with other actions, Hooked on Redux prefixes its own actions with a string. Anything with this string will be funneled through the hooked-on-reducer this function creates. **Default Value:** `'HOOKED_ON_REDUX'`
+`namespace`: _(string)_ Hooked on Redux generates Redux actions behind the scenes without you having to do anything. To allow interoperability with other actions, Hooked on Redux prefixes its own actions with a string. Anything with this string will be funneled through the hooked-on-reducer this function creates. **Default Value:** `'HOOKED_ON_REDUX'`
 
 `handlers`: _(object)_ If you need to add your own reducers to handle complicated state transforms or leverage existing reducers in your application, you can pass them through to `handlers`. For more information, see [Complex Actions](https://github.com/algolia/redux-updeep#complex-actions) in `redux-updeep` (which this library is built upon).
 
@@ -119,7 +119,7 @@ export default createHookedOnReducer(initialState, 'MY_NAMESPACE', {
 })
 ```
 
-**Returns:** _(function)_ This function returns a function that can be used in redux's `createStore`.
+**Returns:** _(function)_ This function returns a function that can be used in Redux's `createStore`.
 
 ---
 
