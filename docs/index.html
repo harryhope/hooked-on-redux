@@ -45,19 +45,19 @@
 <p>Hooked on Redux requires react-redux as a peer dependency. You'll also need <code>react</code>, <code>react-dom</code>, and <code>redux</code> if you don't have them installed already. This guide also assumes you are using npm and a module bundler like <a href="https://webpack.js.org">webpack</a>. To get started:</p>
 <pre><code class="hljs bash language-bash">npm i hooked-on-redux react-redux redux react-dom react</code></pre>
 <h3 id="importing-dependencies">Importing Dependencies</h3>
-<p>Hooked on Redux works with redux and react, so we need to install all of the typical dependencies as well as <code>hooked-on-redux</code>.</p>
-<p>Hooked on Redux can also work with your existing react/redux app, so if you already have react and redux installed you can skip importing from <code>react</code>, <code>react-dom</code>, <code>redux</code> and <code>react-redux</code>.</p>
+<p>Hooked on Redux works with Redux and React, so we need to install all of the typical dependencies as well as <code>hooked-on-redux</code>.</p>
+<p>Hooked on Redux can also work with your existing React/Redux app, so if you already have React and Redux installed you can skip importing from <code>react</code>, <code>react-dom</code>, <code>redux</code> and <code>react-redux</code>.</p>
 <pre><code class="hljs jsx language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
 <span class="hljs-keyword">import</span> {createStore} <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>
 <span class="hljs-keyword">import</span> {Provider} <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
 <span class="hljs-keyword">import</span> {createHookedOnReducer, useHookedOnState} <span class="hljs-keyword">from</span> <span class="hljs-string">'hooked-on-redux'</span></code></pre>
 <h3 id="the-store">The Store</h3>
-<p>Hooked on Redux uses a redux store (either a new or existing one) along with a reducer creator called <code>createHookedOnReducer</code>. This reducer creator will automatically manage state transformations so you won't need to think about reducers, actions or action creators.</p>
+<p>Hooked on Redux uses a Redux store (either a new or existing one) along with a reducer creator called <code>createHookedOnReducer</code>. This reducer creator will automatically manage state transformations so you won't need to think about reducers, actions or action creators.</p>
 <pre><code class="hljs jsx language-jsx"><span class="hljs-keyword">const</span> reducer = createHookedOnReducer()
 <span class="hljs-keyword">const</span> store = createStore(reducer, {})</code></pre>
 <h3 id="provider">Provider</h3>
-<p>Hooked on Redux leverages the <code>&lt;Provider /&gt;</code> component from <code>react-redux</code>. If you've ever used redux with react before you are probably already familiar with this step. In fact, most of this code should look identical to the <a href="https://react-redux.js.org/introduction/quick-start#provider">react-redux</a> quick start guide.</p>
+<p>Hooked on Redux leverages the <code>&lt;Provider /&gt;</code> component from <code>react-redux</code>. If you've ever used Redux with React before you are probably already familiar with this step. In fact, most of this code should look identical to the <a href="https://react-redux.js.org/introduction/quick-start#provider">react-redux</a> quick start guide.</p>
 <pre><code class="hljs jsx language-jsx">ReactDOM.render(
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Counter</span> /&gt;</span>
@@ -66,7 +66,7 @@
 )</code></pre>
 <h3 id="the-hook">The Hook</h3>
 <p>You are now ready to start writing components using <code>useHookedOnState</code>.</p>
-<p><code>useHookedOnState</code> is a <a href="https://reactjs.org/docs/hooks-intro.html">react hook</a> that looks and functions similar to the <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a> hook. The only difference is it allows you to update a redux store instead of local component state by specifying a slice of the global state to modify along with a default value in case nothing is there.</p>
+<p><code>useHookedOnState</code> is a <a href="https://reactjs.org/docs/hooks-intro.html">React hook</a> that looks and functions similar to the <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a> hook. The only difference is it allows you to update a Redux store instead of local component state by specifying a slice of the global state to modify along with a default value in case nothing is there.</p>
 <pre><code class="hljs jsx language-jsx"><span class="hljs-keyword">const</span> Counter = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> [count, setCount] = useHookedOnState(<span class="hljs-string">'app.components.counterValue'</span>, <span class="hljs-number">0</span>)
   <span class="hljs-keyword">return</span> (
@@ -76,7 +76,7 @@
     <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span></span>
   )
 }</code></pre>
-<p>Now, whenever you use the <code>setCount</code> function you defined, it will immutably update the redux store to look like:</p>
+<p>Now, whenever you use the <code>setCount</code> function you defined, it will immutably update the Redux store to look like:</p>
 <pre><code class="hljs js language-js">{
   <span class="hljs-attr">app</span>: {
     <span class="hljs-attr">components</span>: {
@@ -88,17 +88,17 @@
 <h2 id="api">API</h2>
 <h3 id="createhookedonreducer">createHookedOnReducer</h3>
 <pre><code class="hljs js language-js">createHookedOnReducer(initialState, namespace, handlers)</code></pre>
-<p>Creates a redux reducer meant to be used with <a href="https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer"><code>createStore</code></a>.</p>
+<p>Creates a Redux reducer meant to be used with <a href="https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer"><code>createStore</code></a>.</p>
 <p><strong>Arguments</strong></p>
-<p><code>initialState</code>: <em>(any)</em> The initial state of the slice of the redux store controlled by the hooked-on-reducer. Use this parameter to define pre-existing state. <strong>Default value:</strong> <code>{}</code></p>
-<p><code>namespace</code>: <em>(string)</em> Hooked on Redux generates redux actions behind the scenes without you having to do anything. To allow interoperability with other actions, Hooked on Redux prefixes its own actions with a string. Anything with this string will be funneled through the hooked-on-reducer this function creates. <strong>Default Value:</strong> <code>'HOOKED_ON_REDUX'</code></p>
+<p><code>initialState</code>: <em>(any)</em> The initial state of the slice of the Redux store controlled by the hooked-on-reducer. Use this parameter to define pre-existing state. <strong>Default value:</strong> <code>{}</code></p>
+<p><code>namespace</code>: <em>(string)</em> Hooked on Redux generates Redux actions behind the scenes without you having to do anything. To allow interoperability with other actions, Hooked on Redux prefixes its own actions with a string. Anything with this string will be funneled through the hooked-on-reducer this function creates. <strong>Default Value:</strong> <code>'HOOKED_ON_REDUX'</code></p>
 <p><code>handlers</code>: <em>(object)</em> If you need to add your own reducers to handle complicated state transforms or leverage existing reducers in your application, you can pass them through to <code>handlers</code>. For more information, see <a href="https://github.com/algolia/redux-updeep#complex-actions">Complex Actions</a> in <code>redux-updeep</code> (which this library is built upon).</p>
 <pre><code class="hljs js language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createHookedOnReducer(initialState, <span class="hljs-string">'MY_NAMESPACE'</span>, {
   <span class="hljs-string">'MY_NAMESPACE/COMPLEX_ACTION'</span>: <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> {
     <span class="hljs-keyword">return</span> complexTransformation(state, action.payload)
   }
 })</code></pre>
-<p><strong>Returns:</strong> <em>(function)</em> This function returns a function that can be used in redux's <code>createStore</code>.</p>
+<p><strong>Returns:</strong> <em>(function)</em> This function returns a function that can be used in Redux's <code>createStore</code>.</p>
 <hr />
 <h3 id="usehookedonstate">useHookedOnState</h3>
 <pre><code class="hljs js language-js">useHookedOnState(selector, defaultState, namespace)</code></pre>
@@ -108,7 +108,7 @@
 <p><code>namespace</code>: <em>(string)</em> If you are using a custom namespace for <code>createHookedOnReducer</code> then you must specify that namespace as the third parameter. If you are not using a default namespace then you can ignore this. <strong>Default Value:</strong> <code>'HOOKED_ON_REDUX'</code></p>
 <p><strong>Returns:</strong> <em>(array)</em> <code>[value, updateValue]</code> This function returns a "tuple" much like <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a>. The first array element <code>value</code> is the value at the slice of state. The second element of the array <code>updateValue</code> is a function that accepts a single parameter that updates the global state at the slice of state specified by <code>selector</code>.</p>
 <h2 id="prior-art">Prior Art</h2>
-<p>Hooked on Redux builds very heavily on existing libraries and concepts. Under-the-hood it leverages <a href="https://github.com/substantial/updeep">updeep</a> and <a href="https://github.com/algolia/redux-updeep">redux-updeep</a> to do most of the work updating the state tree, and the library is particularly inspired by redux-updeep: See <a href="https://blog.algolia.com/how-we-reduced-boilerplate-and-handled-asynchronous-actions-with-redux/">How we reduced boilerplate and handled asynchronous actions with redux</a>.</p></main>
+<p>Hooked on Redux builds very heavily on existing libraries and concepts. Under-the-hood it leverages <a href="https://github.com/substantial/updeep">updeep</a> and <a href="https://github.com/algolia/redux-updeep">redux-updeep</a> to do most of the work updating the state tree, and the library is particularly inspired by redux-updeep: See <a href="https://blog.algolia.com/how-we-reduced-boilerplate-and-handled-asynchronous-actions-with-redux/">How we reduced boilerplate and handled asynchronous actions with Redux</a>.</p></main>
 <footer>
 Copyright &copy; 2020 Harry Hope. All rights reserved.
 </footer>
