@@ -23,3 +23,26 @@ export const useHookedOnState = (selector, defaultState, namespace = 'HOOKED_ON_
 
   return [value, updateValue]
 }
+
+
+export const useComplexHookedOnState = (
+  selector,
+  reducer,
+  defaultState,
+  namespace = "HOOKED_ON_REDUX"
+) => {
+  const value = useSelector(state =>
+    get(state, `${reducer}.${selector}`, defaultState)
+  );
+
+  const dispatch = useDispatch();
+
+  const updateValue = newValue =>
+    dispatch({
+      payload: isArray(newValue) ? constant(newValue) : newValue,
+      path: selector,
+      type: `${namespace}/${selector}`
+    });
+
+  return [value, updateValue];
+};
