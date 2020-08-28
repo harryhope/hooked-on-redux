@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {render, fireEvent, getNodeText} from '@testing-library/react'
-import {createStore} from 'redux'
+import {createStore, combineReducers} from 'redux'
 import {Provider} from 'react-redux'
 import {createHookedOnReducer, useHookedOnState} from './index'
 
 const Counter = props => {
-  const [value, updateValue] = useHookedOnState('app.counterValue', 0)
+  const [value, updateValue] = useHookedOnState('app.counterValue', 0, props.options)
   const [,updateAll] = useHookedOnState('app', {})
   return (
     <main>
@@ -135,5 +135,61 @@ describe('HookedOnRedux', () => {
     expect(getNodeText(details)).toBe('Darth Vader Hoth ')
     fireEvent.click(update)
     expect(getNodeText(details)).toBe('Darth Maul Hoth 12345')
+  })
+  it('should allow a namespace w/a string', () => {
+    const reducer = createHookedOnReducer({}, 'MY_NAMESPACE')
+    const store = createStore(reducer, {app: {counterValue: 2}})
+
+    const App = () =>
+      <Provider store={store}>
+        <Counter options={'MY_NAMESPACE'}/>
+      </Provider>
+
+    const {container, getByTestId } = render(<App />)
+
+    const counter = getByTestId('countervalue')
+    const increment = getByTestId('increment')
+
+    expect(getNodeText(counter)).toBe('2')
+    fireEvent.click(increment)
+    expect(getNodeText(counter)).toBe('3')
+  })
+  it('should allow a namespace in an options object', () => {
+    const reducer = createHookedOnReducer({}, 'MY_NAMESPACE2')
+    const store = createStore(reducer, {app: {counterValue: 5}})
+
+    const App = () =>
+      <Provider store={store}>
+        <Counter options={{namespace: 'MY_NAMESPACE2'}}/>
+      </Provider>
+
+    const {container, getByTestId } = render(<App />)
+
+    const counter = getByTestId('countervalue')
+    const increment = getByTestId('increment')
+
+    expect(getNodeText(counter)).toBe('5')
+    fireEvent.click(increment)
+    expect(getNodeText(counter)).toBe('6')
+  })
+  it('should allow setting a root path to work with combined reducers', () => {
+    const counterReducer = createHookedOnReducer()
+    const otherReducer = (state = {}) => state
+    const reducers = combineReducers({counterReducer, otherReducer})
+
+    const store = createStore(reducers, {counterReducer: {app: {counterValue: 3}}})
+
+    const App = () =>
+      <Provider store={store}>
+        <Counter options={{rootPath: 'counterReducer'}}/>
+      </Provider>
+    const {container, getByTestId } = render(<App />)
+
+    const counter = getByTestId('countervalue')
+    const increment = getByTestId('increment')
+
+    expect(getNodeText(counter)).toBe('3')
+    fireEvent.click(increment)
+    expect(getNodeText(counter)).toBe('4')
   })
 })
