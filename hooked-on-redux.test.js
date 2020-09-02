@@ -1,19 +1,18 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import {render, fireEvent, getNodeText} from '@testing-library/react'
-import {createStore} from 'redux'
-import {Provider} from 'react-redux'
-import {createHookedOnReducer, useHookedOnState} from './index'
+import { render, fireEvent, getNodeText } from '@testing-library/react'
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import { createHookedOnReducer, useHookedOnState } from './index'
 
 const Counter = props => {
-  const [value, updateValue] = useHookedOnState('app.counterValue', 0)
-  const [,updateAll] = useHookedOnState('app', {})
+  const [value, updateValue] = useHookedOnState('app.counterValue', 0, props.options)
+  const [, updateAll] = useHookedOnState('app', {})
   return (
     <main>
-      <div><button data-testid="deincrement" onClick={() => updateValue(value -1)}>-</button></div>
-      <div data-testid="countervalue">{value}</div>
-      <div><button data-testid="increment" onClick={() => updateValue(value + 1)}>+</button></div>
-      <div><button data-testid="set" onClick={() => updateAll({counterValue: 42})}>Set to 42</button></div>
+      <div><button data-testid='deincrement' onClick={() => updateValue(value - 1)}>-</button></div>
+      <div data-testid='countervalue'>{value}</div>
+      <div><button data-testid='increment' onClick={() => updateValue(value + 1)}>+</button></div>
+      <div><button data-testid='set' onClick={() => updateAll({ counterValue: 42 })}>Set to 42</button></div>
     </main>
   )
 }
@@ -22,12 +21,12 @@ const TodoList = props => {
   const [list, updateList] = useHookedOnState('list', ['milk'])
   return (
     <main>
-      <div data-testid="list">
+      <div data-testid='list'>
         {list.map(item => `${item},`)}
         ...
       </div>
       <button
-        data-testid="add"
+        data-testid='add'
         onClick={() => updateList(list.concat(['eggs', 'bread', 'taters']))}
       />
     </main>
@@ -42,13 +41,13 @@ const AddressBook = props => {
   })
 
   const updateAll = () => {
-    updateFields({...fields, last: 'Maul', password: 12345})
+    updateFields({ ...fields, last: 'Maul', password: 12345 })
   }
 
   return (
     <main>
-      <div data-testid="details">{fields.first} {fields.last} {fields.planet} {fields.password}</div>
-      <button data-testid="update" onClick={updateAll}>Update</button>
+      <div data-testid='details'>{fields.first} {fields.last} {fields.planet} {fields.password}</div>
+      <button data-testid='update' onClick={updateAll}>Update</button>
     </main>
   )
 }
@@ -60,10 +59,10 @@ describe('HookedOnRedux', () => {
 
     const App = () =>
       <Provider store={store}>
-        <Counter/>
+        <Counter />
       </Provider>
 
-    const {container, getByTestId } = render(<App />)
+    const { getByTestId } = render(<App />)
 
     const counter = getByTestId('countervalue')
     const increment = getByTestId('increment')
@@ -75,7 +74,7 @@ describe('HookedOnRedux', () => {
     expect(getNodeText(counter)).toBe('1')
     fireEvent.click(increment)
     expect(getNodeText(counter)).toBe('2')
-    ;[1,2,3].forEach(() => fireEvent.click(deincrement))
+    ;[1, 2, 3].forEach(() => fireEvent.click(deincrement))
     expect(getNodeText(counter)).toBe('-1')
     fireEvent.click(set)
     expect(getNodeText(counter)).toBe('42')
@@ -84,14 +83,14 @@ describe('HookedOnRedux', () => {
   })
   it('should allow an initial state', () => {
     const reducer = createHookedOnReducer()
-    const store = createStore(reducer, {app: {counterValue: 5}})
+    const store = createStore(reducer, { app: { counterValue: 5 } })
 
     const App = () =>
       <Provider store={store}>
-        <Counter/>
+        <Counter />
       </Provider>
 
-    const {container, getByTestId } = render(<App />)
+    const { getByTestId } = render(<App />)
 
     const counter = getByTestId('countervalue')
     const increment = getByTestId('increment')
@@ -106,10 +105,10 @@ describe('HookedOnRedux', () => {
 
     const App = () =>
       <Provider store={store}>
-        <TodoList/>
+        <TodoList />
       </Provider>
 
-    const {container, getByTestId } = render(<App />)
+    const { getByTestId } = render(<App />)
 
     const list = getByTestId('list')
     const addItems = getByTestId('add')
@@ -124,10 +123,10 @@ describe('HookedOnRedux', () => {
 
     const App = () =>
       <Provider store={store}>
-        <AddressBook/>
+        <AddressBook />
       </Provider>
 
-    const {container, getByTestId } = render(<App />)
+    const { getByTestId } = render(<App />)
 
     const details = getByTestId('details')
     const update = getByTestId('update')
@@ -135,5 +134,61 @@ describe('HookedOnRedux', () => {
     expect(getNodeText(details)).toBe('Darth Vader Hoth ')
     fireEvent.click(update)
     expect(getNodeText(details)).toBe('Darth Maul Hoth 12345')
+  })
+  it('should allow a namespace w/a string', () => {
+    const reducer = createHookedOnReducer({}, 'MY_NAMESPACE')
+    const store = createStore(reducer, { app: { counterValue: 2 } })
+
+    const App = () =>
+      <Provider store={store}>
+        <Counter options='MY_NAMESPACE' />
+      </Provider>
+
+    const { getByTestId } = render(<App />)
+
+    const counter = getByTestId('countervalue')
+    const increment = getByTestId('increment')
+
+    expect(getNodeText(counter)).toBe('2')
+    fireEvent.click(increment)
+    expect(getNodeText(counter)).toBe('3')
+  })
+  it('should allow a namespace in an options object', () => {
+    const reducer = createHookedOnReducer({}, 'MY_NAMESPACE2')
+    const store = createStore(reducer, { app: { counterValue: 5 } })
+
+    const App = () =>
+      <Provider store={store}>
+        <Counter options={{ namespace: 'MY_NAMESPACE2' }} />
+      </Provider>
+
+    const { getByTestId } = render(<App />)
+
+    const counter = getByTestId('countervalue')
+    const increment = getByTestId('increment')
+
+    expect(getNodeText(counter)).toBe('5')
+    fireEvent.click(increment)
+    expect(getNodeText(counter)).toBe('6')
+  })
+  it('should allow setting a root path to work with combined reducers', () => {
+    const counterReducer = createHookedOnReducer()
+    const otherReducer = (state = {}) => state
+    const reducers = combineReducers({ counterReducer, otherReducer })
+
+    const store = createStore(reducers, { counterReducer: { app: { counterValue: 3 } } })
+
+    const App = () =>
+      <Provider store={store}>
+        <Counter options={{ rootPath: 'counterReducer' }} />
+      </Provider>
+    const { getByTestId } = render(<App />)
+
+    const counter = getByTestId('countervalue')
+    const increment = getByTestId('increment')
+
+    expect(getNodeText(counter)).toBe('3')
+    fireEvent.click(increment)
+    expect(getNodeText(counter)).toBe('4')
   })
 })
