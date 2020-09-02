@@ -12,7 +12,7 @@ export const useHookedOnState = (selector, defaultState, options = {}) => {
   const namespace = isString(options) ? options : get(options, 'namespace', 'HOOKED_ON_REDUX')
   const rootPath = get(options, 'rootPath')
   const value = useSelector(state =>
-    get(state, (rootPath ? `${rootPath}.${selector}` : selector), defaultState)
+    get(state, rootPath ? `${rootPath}.${selector}` : selector, defaultState)
   )
 
   const dispatch = useDispatch()
