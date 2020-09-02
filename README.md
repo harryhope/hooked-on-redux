@@ -125,7 +125,7 @@ export default createHookedOnReducer(initialState, 'MY_NAMESPACE', {
 
 ### useHookedOnState
 ```js
-useHookedOnState(selector, defaultState, namespace)
+useHookedOnState(selector, defaultState, options)
 ```
 
 **Arguments**
@@ -134,7 +134,11 @@ useHookedOnState(selector, defaultState, namespace)
 
 `defaultState`: _(any)_ This is the default value that will be used if the "slice" of the store specified by `selector` is empty. It works very similarly to [`useState`](https://reactjs.org/docs/hooks-state.html)'s default state.
 
-`namespace`: _(string)_ If you are using a custom namespace for `createHookedOnReducer` then you must specify that namespace as the third parameter. If you are not using a default namespace then you can ignore this. **Default Value:** `'HOOKED_ON_REDUX'`
+`options`: _(object)_ A configuration object that may contain the following properties:
+
+- `namespace`: _(string)_ If you are using a custom namespace for `createHookedOnReducer` then you must specify that namespace as the third parameter. If you are not using a default namespace then you can ignore this. **Default Value:** `'HOOKED_ON_REDUX'`
+
+- `rootPath`: _(string)_ If the Hooked on Redux reducer is not at the root level of your store, you must specify the subpath it exists on with this parameter. This usually happens if you integrate Hooked on Redux into a larger Redux codebase using something like `combineReducers`. For instance, if the Hooked on Redux reducer is added to the combined reducers with the name `myReducer`, then `rootPath` should be `myReducer` as well. For a nested path you may specify a path such as `path.to.my.store`.
 
 **Returns:** _(array)_ `[value, updateValue]` This function returns a "tuple" much like [`useState`](https://reactjs.org/docs/hooks-state.html). The first array element `value` is the value at the slice of state. The second element of the array `updateValue` is a function that accepts a single parameter that updates the global state at the slice of state specified by `selector`.
 
