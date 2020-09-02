@@ -5,11 +5,11 @@ interface HookedOnStateConfig {
   rootPath?: string
 }
 
-export const createHookedOnReducer<S>(
-  initialState: S,
+export const createHookedOnReducer<R>(
+  initialState: R,
   namespace?: string,
   handlers?: object
-)
+) : R
 
 export const useHookedOnState<S>(
   selector: string,
