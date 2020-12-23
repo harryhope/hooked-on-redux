@@ -11,10 +11,12 @@
     <script>
       (function(d){
         var x = d.createElement("link");
+        var z = d.createElement("link");
         var y = d.getElementsByTagName("script")[0];
-        x.rel = "stylesheet";
+        x.rel = "stylesheet"; z.rel = "stylesheet";
         x.href = "https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap";
-        y.parentNode.insertBefore(x, y);
+        z.href = "https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css";
+        y.parentNode.insertBefore(x, y); y.parentNode.insertBefore(z, y);
       })(document);
     </script>
   </head>
