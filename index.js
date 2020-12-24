@@ -2,7 +2,6 @@ import get from 'lodash/get'
 import isString from 'lodash/isString'
 import isArray from 'lodash/isArray'
 import createReducer from 'redux-updeep'
-import { constant } from 'updeep'
 import { useSelector, useDispatch } from 'react-redux'
 
 export const createHookedOnReducer = (initialState = {}, namespace = 'HOOKED_ON_REDUX', handlers = {}) =>
@@ -19,7 +18,7 @@ export const useHookedOnState = (selector, defaultState, options = {}) => {
 
   const updateValue = newValue =>
     dispatch({
-      payload: isArray(newValue) ? constant(newValue) : newValue,
+      payload: isArray(newValue) ? newValue.slice() : newValue,
       path: selector,
       type: `${namespace}/${selector}`
     })

@@ -19,6 +19,12 @@ const Counter = props => {
 
 const TodoList = props => {
   const [list, updateList] = useHookedOnState('list', ['milk'])
+  const mutateList = () => {
+    list.push('eggs')
+    list.push('bread')
+    list.push('taters')
+    updateList(list)
+  }
   return (
     <main>
       <div data-testid='list'>
@@ -27,7 +33,11 @@ const TodoList = props => {
       </div>
       <button
         data-testid='add'
-        onClick={() => updateList(list.concat(['eggs', 'bread', 'taters']))}
+        onClick={mutateList}
+      />
+      <button
+        data-testid='replace'
+        onClick={() => updateList(['cookies', 'candy', 'cheese whiz'])}
       />
     </main>
   )
@@ -112,10 +122,13 @@ describe('HookedOnRedux', () => {
 
     const list = getByTestId('list')
     const addItems = getByTestId('add')
+    const replaceItems = getByTestId('replace')
 
     expect(getNodeText(list)).toBe('milk,...')
     fireEvent.click(addItems)
     expect(getNodeText(list)).toBe('milk,eggs,bread,taters,...')
+    fireEvent.click(replaceItems)
+    expect(getNodeText(list)).toBe('cookies,candy,cheese whiz,...')
   })
   it('should predictably update objects', () => {
     const reducer = createHookedOnReducer()

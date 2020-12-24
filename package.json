@@ -27,8 +27,7 @@
   "homepage": "https://github.com/harryhope/hooked-on-redux#readme",
   "dependencies": {
     "lodash": "^4.17.15",
-    "redux-updeep": "^0.1.1",
-    "updeep": "^1.2.0"
+    "redux-updeep": "^0.1.1"
   },
   "peerDependencies": {
     "react-redux": "^7.2.0"
