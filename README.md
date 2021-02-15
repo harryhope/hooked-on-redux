@@ -52,7 +52,7 @@ const reducer = createHookedOnReducer()
 const store = createStore(reducer, {})
 ```
 
-### Provider 
+### Provider
 Hooked on Redux leverages the `<Provider />` component from `react-redux`. If you've ever used Redux with React before you are probably already familiar with this step. In fact, most of this code should look identical to the [react-redux](https://react-redux.js.org/introduction/quick-start#provider) quick start guide.
 
 ```jsx
@@ -143,4 +143,4 @@ useHookedOnState(selector, defaultState, options)
 **Returns:** _(array)_ `[value, updateValue]` This function returns a "tuple" much like [`useState`](https://reactjs.org/docs/hooks-state.html). The first array element `value` is the value at the slice of state. The second element of the array `updateValue` is a function that accepts a single parameter that updates the global state at the slice of state specified by `selector`.
 
 ## Prior Art
-Hooked on Redux builds very heavily on existing libraries and concepts. Under-the-hood it leverages [updeep](https://github.com/substantial/updeep) and [redux-updeep](https://github.com/algolia/redux-updeep) to do most of the work updating the state tree, and the library is particularly inspired by redux-updeep: See [How we reduced boilerplate and handled asynchronous actions with redux](https://blog.algolia.com/how-we-reduced-boilerplate-and-handled-asynchronous-actions-with-redux/).
+Hooked on Redux is inspired by (and used to leverage) [updeep](https://github.com/substantial/updeep) and [redux-updeep](https://github.com/algolia/redux-updeep). In particular, this article: [How we reduced boilerplate and handled asynchronous actions with redux](https://blog.algolia.com/how-we-reduced-boilerplate-and-handled-asynchronous-actions-with-redux/).
