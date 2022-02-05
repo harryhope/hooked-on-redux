@@ -3,6 +3,7 @@
   "version": "0.4.0",
   "description": "A simple global state container for React apps",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "npm run lint && jest --coverage",
     "build:example": "npx webpack --mode=development",
