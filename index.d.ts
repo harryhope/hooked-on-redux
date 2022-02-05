@@ -1,18 +1,18 @@
-type Dispatch<A> = A => void
+type Dispatch<S> = (value: S) => void;
 
-interface HookedOnStateConfig {
-  namespace?: string,
-  rootPath?: string
-}
+type HookedOnStateConfig = {
+  namespace?: string;
+  rootPath?: string;
+};
 
-export const createHookedOnReducer<R>(
+export function createHookedOnReducer<R>(
   initialState: R,
   namespace?: string,
   handlers?: object
-) : R
+) : R;
 
-export const useHookedOnState<S>(
+export function useHookedOnState<S>(
   selector: string,
   defaultState: S,
   options?: HookedOnStateConfig
-) : [S, Dispatch<S>]
+) : [S, Dispatch<S>];
