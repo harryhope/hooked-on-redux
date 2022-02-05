@@ -103,5 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-# Ignore docs for npm
+# Ignore docs/examples for npm
 docs/*
+example/*
