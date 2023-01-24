@@ -1,6 +1,6 @@
 {
   "name": "hooked-on-redux",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A simple global state container for React apps",
   "main": "index.js",
   "types": "index.d.ts",
