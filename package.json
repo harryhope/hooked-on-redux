@@ -30,7 +30,7 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "react-redux": "^7.2.0"
+    "react-redux": ">=7.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
