@@ -39,7 +39,7 @@
     "@harryhope/eslint-config-hh": "^1.1.1",
     "@testing-library/react": "^10.0.2",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^25.1.0",
+    "babel-jest": "^29.7.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "eslint": "^7.8.1",
